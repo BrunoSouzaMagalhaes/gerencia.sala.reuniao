@@ -2,7 +2,6 @@ import { IServico } from './../Interface/IServico';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { HeaderConfig } from '../view-models/header-config';
 import { Observable } from 'rxjs';
 import { CadastroBaseService } from './cadastro-base.service';
 
