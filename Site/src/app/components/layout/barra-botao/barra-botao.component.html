@@ -1,0 +1,8 @@
+<div class="example-button-row barra-botoes">
+    <button mat-flat-button  color="primary" [disabled]="!ativo.buscar" name="buscar" (click)="!ativo.buscar ? return: Buscar()" >Buscar</button>
+    <button mat-flat-button  color="primary" [disabled]="!ativo.incluir" name="incluir" (click)="!ativo.incluir ? return: Inserir()" >Inserir</button>
+    <button mat-flat-button  color="primary" [disabled]="!ativo.editar" name="editar"(click)="!ativo.editar ? return: Editar()" >Editar</button>
+    <button mat-flat-button  color="primary" [disabled]="!ativo.excluir" name="excluir"(click)="!ativo.excluir ? return: Excluir()" >Excluir</button>
+    <button mat-flat-button  color="primary" [disabled]="!ativo.salvar" type="submit" name="salvar"(click)="!ativo.salvar ? return: Salvar()" >Salvar</button>
+    <button mat-flat-button  color="primary" [disabled]="!ativo.cancelar" name="cancelar"(click)="!ativo.cancelar ? return: Cancelar()" >Cancelar</button>
+</div>

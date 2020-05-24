@@ -1,0 +1,55 @@
+<div appPainel [titulo]="config.titulo" (onResize)="redimensionouPainel($event)">
+        <perfect-scrollbar [ngStyle]="{maxWidth: config.painel.width, maxHeight: config.painel.height}">
+            <form>
+    
+                <div style="margin-bottom: 10px;">
+                    <app-barra-botao [Tela]="this" [operacao]="operacao" ></app-barra-botao>
+                </div>
+    
+                <mat-accordion multi="true">
+                    <mat-expansion-panel [expanded]="true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Consulta
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+    
+                        <mat-form-field class="example-full-width" floatPlaceholder="always">
+                            <mat-label>Código</mat-label>
+                            <input matInput [disabled]="true" placeholder="Código" name="CodUsuario"
+                                [(ngModel)]="entidade.CodUsuario">
+                        </mat-form-field>
+    
+                        <mat-form-field class="example-full-width" floatPlaceholder="always">
+                            <mat-label>Nome do Usuário</mat-label>
+                            <input [disabled]="trataDisabledInput()" matInput placeholder="Nome do Usuário" name="Nome"
+                                [(ngModel)]="entidade.Nome">
+                        </mat-form-field>
+     
+    
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+                        [expanded]="true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Resultados
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+    
+    
+                        <div style="width: 100%; height: 100%;">
+                            <ag-grid-angular style="width: 100%; height: 300px;" class="ag-theme-alpine"
+                                [gridOptions]="grid1.gridOptions" [rowData]="grid1.gridOptions.rowData"
+                                [columnDefs]="grid1.gridOptions.columnDefs" (gridSizeChanged)="vm.agGridSizeChanged($event)"
+                                (selectionChanged)="onSelectionChanged($event)"
+                                (gridReady)="onGridReady($event)">
+                            </ag-grid-angular>
+                        </div>
+    
+    
+                    </mat-expansion-panel>
+                </mat-accordion>
+    
+            </form>
+        </perfect-scrollbar>
+    </div>

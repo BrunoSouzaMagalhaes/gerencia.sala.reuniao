@@ -1,0 +1,85 @@
+<div appPainel [titulo]="config.titulo" (onResize)="redimensionouPainel($event)">
+    <perfect-scrollbar [ngStyle]="{maxWidth: config.painel.width, maxHeight: config.painel.height}">
+        <form>
+
+            <div style="margin-bottom: 10px;">
+                <app-barra-botao [Tela]="this" [operacao]="operacao" ></app-barra-botao>
+            </div>
+
+            <mat-accordion multi="true">
+                <mat-expansion-panel [expanded]="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Consulta
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <mat-form-field class="example-full-width" floatPlaceholder="always">
+                        <mat-label>Código</mat-label>
+                        <input matInput [disabled]="true" placeholder="Código" name="CodEvento"
+                            [(ngModel)]="entidade.CodEvento">
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" floatPlaceholder="always">
+                        <mat-label>Nome do Evento</mat-label>
+                        <input [disabled]="trataDisabledInput()" matInput placeholder="Nome do Evento" name="Nome"
+                            [(ngModel)]="entidade.Nome">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Responsável</mat-label>
+                        <mat-select required [disabled]="trataDisabledInput()" [(value)]="entidade.CodUsuario"
+                            name="responsavel">
+                            <mat-option *ngFor="let objUsuario of usuarios" [value]="objUsuario.CodUsuario">
+                                {{objUsuario.Nome}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Sala</mat-label>
+                        <mat-select required [disabled]="trataDisabledInput()" [(value)]="entidade.CodSala" name="sala">
+                            <mat-option *ngFor="let objSala of salas" [value]="objSala.CodSala">
+                                {{objSala.Nome}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" floatPlaceholder="always">
+                        <mat-label>Data Início</mat-label>
+                        <input [disabled]="trataDisabledInput()" matInput [imask]="{mask: '00/00/0000 00:00'}"
+                            placeholder="Data Início" name="Inicio" [(ngModel)]="entidade.DataInicio">
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" floatPlaceholder="always">
+                        <mat-label>Data Fim</mat-label>
+                        <input [disabled]="trataDisabledInput()" matInput [imask]="{mask: '00/00/0000 00:00'}"
+                            placeholder="Data Fim" name="Fim" [(ngModel)]="entidade.DataFim">
+                    </mat-form-field>
+
+                </mat-expansion-panel>
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+                    [expanded]="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Resultados
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+
+                    <div style="width: 100%; height: 100%;">
+                        <ag-grid-angular style="width: 100%; height: 300px;" class="ag-theme-alpine"
+                            [gridOptions]="grid1.gridOptions" [rowData]="grid1.gridOptions.rowData"
+                            [columnDefs]="grid1.gridOptions.columnDefs" (gridSizeChanged)="vm.agGridSizeChanged($event)"
+                            (selectionChanged)="onSelectionChanged($event)"
+                            (gridReady)="onGridReady($event)">
+                        </ag-grid-angular>
+                    </div>
+
+
+                </mat-expansion-panel>
+            </mat-accordion>
+
+        </form>
+    </perfect-scrollbar>
+</div>
